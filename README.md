@@ -1,12 +1,10 @@
 The goal of this project is to extract representative elements from a large image data set. The quality of the selected set of points is measured by the sum of squared distances from each point of the dataset to the closest point in the selected set. For details check the handout below.
 
-Download handout
-
-DATASET
+# DATASET
 
 In the original representation, each image was an integer vector of dimension 3072 (32 * 32 * 3, intensity is computed for each pixel). We have performed mean normalization, feature scaling, dimensionality reduction with PCA, as well as whitening. We then extracted a subset from that dataset which contains 27K images, each being a 250 dimensional feature vector. In addition, we provide you with a subset of those 27K images for testing. The dataset has been serialized to the npy format which enables efficient loading. The conversion is done for you and you may assume that the value in the mapper will be a 2D NumPy array. Further feature transformations are not allowed.
 
-TASK
+# TASK
 
 To create a valid MapReduce program for this task, you need to create a Python source file that contains both a mapper and a reducer function. The mapper(key, value) function takes as input a (key, value) tuple where key is None and value is a NumPy array. It should yield (key, value) pairs. The reducer(key, value) function takes as input a key and a NumPy array that contains the concatenation of the values emitted by the mappers. It should yield (key, value) pairs. A skeleton of such a function is provided in the example.py.
 
@@ -18,7 +16,8 @@ Each mapper receives a key and value pair where key is always None (for consiste
 There will be one reducer process. All mappers should output the same key.
 Reducer should output a 2D NumPy array containing 200 vectors representing the selected centers (each being 250 floats).
 You may use the Python 2.7 standard library and both NumPy and SciPy libraries. You are not allowed to use multithreading, multiprocessing, networking, files and sockets. In particular, you are not allowed to use the scikit-learn library.
-EVALUATION AND GRADING
+
+# EVALUATION AND GRADING
 
 To evaluate the quality of the returned set we will use the normalized quantization error: average squared distance from each point of the dataset to the closest point in the returned set.
 
